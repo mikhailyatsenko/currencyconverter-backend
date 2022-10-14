@@ -1,14 +1,14 @@
 const express = require("express");
 const https = require("https");
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 const outputCurrency = "";
 
 app.get("/", (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST");
   res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type, Authorization");
-  res.end("hello");
+  res.end("server working");
   const inputCurrency = req.query;
   convert(inputCurrency, res);
 });
@@ -19,7 +19,7 @@ function convert(inputCurrency, response) {
   https.get(url, (res) => {
     let output = "";
     if (res.statusCode !== 200) {
-      console.log(`Status code: ${res}`);
+      console.log(`Something wrong: ${res}`);
       return;
     }
 
@@ -28,12 +28,12 @@ function convert(inputCurrency, response) {
     });
 
     res.on("end", () => {
-      console.log(output);
+      console.log(JSON.stringify(output));
       response.end(output);
     });
   });
 }
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`App listening on port ${port}`);
 });
