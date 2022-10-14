@@ -1,7 +1,7 @@
 const express = require("express");
 const https = require("https");
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3000;
 const outputCurrency = "";
 
 app.get("/", (req, res) => {
