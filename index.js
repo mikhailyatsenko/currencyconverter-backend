@@ -1,12 +1,12 @@
 const express = require("express");
 const https = require("https");
-const { resolve } = require("path");
 const app = express();
 const port = process.env.PORT || 3001;
 
 app.get("/", (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Content-Type", "application/json");
+
   const inputCurrency = req.query;
   convert(inputCurrency, res);
 });
@@ -25,6 +25,7 @@ function convert(inputCurrency, response) {
   https.get(url, (res) => {
     let outputData = "";
     let outputCurrency = {};
+
     if (res.statusCode !== 200) {
       console.log(`Something wrong: ${res}`);
       return;
