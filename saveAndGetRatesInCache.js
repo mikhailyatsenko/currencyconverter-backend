@@ -17,8 +17,6 @@ function getRateFromCache(toCurrency, res) {
 }
 
 function saveRatesToCache(toCurrency, response) {
-  console.log("ответ хероку", response);
-
   let ratesToSave = Object.assign({}, response);
 
   cacheRates[response.toCurrency] = ratesToSave;
