@@ -18,7 +18,10 @@ function getRateFromCache(toCurrency, res) {
 
 function saveRatesToCache(toCurrency, response) {
   console.log("ответ хероку", response);
-  cacheRates[response.toCurrency] = response;
+
+  let ratesToSave = Object.assign({}, response);
+
+  cacheRates[response.toCurrency] = ratesToSave;
   cacheRates[response.toCurrency].ttl = Date.now() + 3600000; //saving rate in LS for an hour
   console.log("закешировано", cacheRates[response.toCurrency]);
 }
