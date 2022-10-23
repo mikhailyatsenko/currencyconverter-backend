@@ -3,11 +3,11 @@ const cacheRates = {};
 
 function getRateFromCache(toCurrency, res) {
   if (!cacheRates[toCurrency]) {
-    console.log("не найдено закеширровнного значения, идем на хероку");
+    console.log("не найдено закеширровнного значения, идем на API");
     return getRates(toCurrency, res);
   }
   if (Date.now() > cacheRates[toCurrency].ttl) {
-    console.log("закешированное значение устарело, идем на хероку");
+    console.log("закешированное значение устарело, идем на API");
 
     cacheRates[toCurrency] = "";
     return getRates(toCurrency, res);

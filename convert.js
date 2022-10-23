@@ -14,7 +14,7 @@ async function convert(inputCurrency, response) {
     outputCurrency.rate = res.data.rates[inputCurrency.to].rate;
     saveAndGetConvertRate.saveRateToCache(outputCurrency.from, outputCurrency.to, outputCurrency);
 
-    console.log("получем курс с хероку", outputCurrency);
+    console.log("получем курс с API", outputCurrency);
 
     response.end(JSON.stringify(outputCurrency));
   } catch (err) {
