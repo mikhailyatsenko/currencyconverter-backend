@@ -12,7 +12,7 @@ function getRateFromCache(toCurrency, res) {
     cacheRates[toCurrency] = "";
     return getRates(toCurrency, res);
   }
-  console.log("получаем курсы валют из кєша", cacheRates[toCurrency]);
+  console.log("получаем курсы валют из кэша", cacheRates[toCurrency]);
   return res.end(JSON.stringify(cacheRates[toCurrency]));
 }
 
