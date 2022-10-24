@@ -7,8 +7,6 @@ async function convert(inputCurrency, response) {
   try {
     const res = await axios.get(url);
 
-    console.log("ответ от сервера", res.data);
-
     outputCurrency.from = inputCurrency.from;
     outputCurrency.to = inputCurrency.to;
     outputCurrency.rate = res.data.rates[inputCurrency.to].rate;

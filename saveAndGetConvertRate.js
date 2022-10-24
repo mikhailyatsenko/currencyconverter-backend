@@ -5,16 +5,15 @@ const cacheConvertRates = {};
 
 function getRateFromCache(inputCurrency, res) {
   let convertKeyName = inputCurrency.from + inputCurrency.to;
-  console.log("Задаем ключ курса обмена", convertKeyName);
 
   if (!cacheConvertRates[convertKeyName]) {
-    console.log("закешированного значения не найдено, идём на хероку");
+    console.log("закешированного значения не найдено, идём на API");
     return convert(inputCurrency, res);
   }
 
   if (Date.now() > cacheConvertRates[convertKeyName].ttl) {
     cacheConvertRates[convertKeyName] = "";
-    console.log("закешированного значения не найдено, идём на хероку");
+    console.log("закешированное значение устарело, идём на API");
 
     return convert(inputCurrency, res);
   }

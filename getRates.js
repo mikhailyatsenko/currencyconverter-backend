@@ -1,5 +1,5 @@
 const axios = require("axios");
-const saveAndGetRatesInCache = require("./saveAndGetRatesInCache.js");
+const saveAndGetRates = require("./saveAndGetRates.js");
 
 function getRates(toCurrency, response) {
   const urlEur = `https://api.getgeoapi.com/v2/currency/convert?api_key=904feae0b722e7df9827cc79d154b91a6975cffc&from=EUR&to=${toCurrency}&amount=1&format=json`;
@@ -36,7 +36,7 @@ function getRates(toCurrency, response) {
   });
 
   Promise.all([myPromise, myPromise2, myPromise3]).then(() => {
-    saveAndGetRatesInCache.saveRatesToCache(toCurrency, outputRates);
+    saveAndGetRates.saveRatesToCache(toCurrency, outputRates);
     response.end(JSON.stringify(outputRates));
   });
 }
